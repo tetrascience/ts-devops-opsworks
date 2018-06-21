@@ -1,1 +1,2 @@
-# ts_opsworks
+# opsworks
+Opsworks Chef 12 Stack deployable recipes

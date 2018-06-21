@@ -1,0 +1,55 @@
+{
+  "name": "jenkins",
+  "description": "Installs/Configures jenkins",
+  "long_description": "Installs/Configures jenkins",
+  "maintainer": "The Authors",
+  "maintainer_email": "you@example.com",
+  "license": "All Rights Reserved",
+  "platforms": {
+  },
+  "dependencies": {
+    "java": "~> 1.50.0",
+    "apt": "= 5.1.0",
+    "homebrew": "= 3.0.0",
+    "windows": "= 2.1.1",
+    "compat_resource": "~> 12.19.0",
+    "ohai": "= 4.2.3",
+    "git": "= 5.0.2",
+    "mingw": "= 1.2.5",
+    "build-essential": "= 7.0.3",
+    "dmg": "= 3.1.1",
+    "yum-epel": "~> 2.1.1",
+    "limits": "~> 1.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.0",
+  "source_url": "",
+  "issues_url": "",
+  "privacy": false,
+  "chef_versions": [
+    [
+      ">= 12.14"
+    ]
+  ],
+  "ohai_versions": [
+
+  ],
+  "gems": [
+
+  ]
+}

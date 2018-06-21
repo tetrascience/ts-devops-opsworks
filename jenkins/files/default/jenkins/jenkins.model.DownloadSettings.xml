@@ -1,0 +1,10 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<jenkins.security.UpdateSiteWarningsConfiguration>
+  <ignoredWarnings>
+    <string>SECURITY-248</string>
+  </ignoredWarnings>
+</jenkins.security.UpdateSiteWarningsConfiguration>root@ip-10-56-104-218:/var/lib/jenkins# cat jenkins.model.DownloadSettings.xml
+<?xml version='1.1' encoding='UTF-8'?>
+<jenkins.model.DownloadSettings>
+  <useBrowser>false</useBrowser>
+</jenkins.model.DownloadSettings>
