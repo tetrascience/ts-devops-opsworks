@@ -1,0 +1,41 @@
+# ======================== Elasticsearch Configuration =========================
+
+# ---------------------------------- Cluster -----------------------------------
+#
+cluster.name: <%= node['elasticsearch']['cluster_name'] %>
+<%= @xpack %>
+#
+# ------------------------------------ Node ------------------------------------
+#
+node.name: <%= @node_name %>
+<%= @node_rack %>: <%= @rack_id %>
+#
+# ----------------------------------- Paths ------------------------------------
+#
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+path.repo: /var/repos/elastichsearch
+#
+# ----------------------------------- Memory -----------------------------------
+#
+#bootstrap.memory_lock: true
+#
+# ---------------------------------- Network -----------------------------------
+#
+network.host: 0.0.0.0
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+http.port: 9200
+#
+# --------------------------------- Discovery ----------------------------------
+#
+discovery.zen.ping.unicast.hosts: [<% @elasticsearch_nodes.each do |elasticsearch_node| -%>"<%= elasticsearch_node %>"<%= "," unless elasticsearch_node == @elasticsearch_nodes.last %><% end -%>]
+discovery.zen.minimum_master_nodes: <%= @master_nodes_quorum %>
+#
+# ---------------------------------- Gateway -----------------------------------
+#
+#gateway.recover_after_nodes: 3
+#
+# ---------------------------------- Various -----------------------------------
+#
+#action.destructive_requires_name: true
