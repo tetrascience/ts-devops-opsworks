@@ -71,7 +71,7 @@ remote_file '/tmp/ssm/amazon-ssm-agent.deb' do
 end
 
 dpkg_package 'amazon-ssm-agent.deb' do
-  source '/tmp/ssm'
+  source '/tmp/ssm/amazon-ssm-agent.deb'
   action :install
 end
 
