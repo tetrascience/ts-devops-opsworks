@@ -42,15 +42,10 @@ execute 'chown_elasticseach_mount' do
   only_if { ::Dir.exist?("/var/lib/elasticsearch") }
 end
 
-execute 'create_elasticseach_repos' do
-  command 'mkdir -p /var/repos/elastichsearch'
-  action :run
-end
-
 directory '/var/repos/elastichsearch' do
   owner 'elasticsearch'
   group 'elasticsearch'
-  recursive True
+  recursive true
   mode '0755'
   action :create
 end
