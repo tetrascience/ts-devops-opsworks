@@ -36,7 +36,7 @@ package 'elasticsearch' do
   action :install
 end
 
-execute 'chpwn_elasticseach_mount' do
+execute 'chown_elasticseach_mount' do
   command 'chown -R elasticsearch:elasticsearch /var/lib/elasticsearch'
   action :run
   only_if { ::Dir.exist?("/var/lib/elasticsearch") }
@@ -47,10 +47,12 @@ execute 'create_elasticseach_repos' do
   action :run
 end
 
-execute 'chpwn_elasticseach_path' do
-  command 'chown -R elasticsearch:elasticsearch /var/repos/elastichsearch'
-  action :run
-  only_if { ::Dir.exist?("/var/repos/elastichsearch") }
+directory '/var/repos/elastichsearch' do
+  owner 'elasticsearch'
+  group 'elasticsearch'
+  recursive True
+  mode '0755'
+  action :create
 end
 
 execute 'plugin_elasticseach_s3' do
@@ -58,9 +60,25 @@ execute 'plugin_elasticseach_s3' do
   action :run
 end
 
-execute 'system_manger' do
-  command 'mkdir /tmp/ssm & wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb & dpkg -i amazon-ssm-agent.deb'
-  action :run
+directory '/tmp/ssm' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+remote_file '/tmp/ssm' do
+  source 'https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb'
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+dpkg_package 'system_manager' do
+  source '/tmp/ssm'
+  package_name 'amazon-ssm-agent.deb'
+  action :install
 end
 
 if node['elasticsearch']['version'] == "2.x" then
