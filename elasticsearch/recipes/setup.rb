@@ -51,7 +51,7 @@ directory '/var/repos/elastichsearch' do
 end
 
 execute 'plugin_elasticseach_s3' do
-  command '/usr/share/elasticsearch/bin/elasticsearch-plugin install repository-s3'
+  command '/usr/share/elasticsearch/bin/elasticsearch-plugin install --batch repository-s3'
   action :run
 end
 
