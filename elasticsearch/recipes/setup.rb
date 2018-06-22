@@ -66,7 +66,7 @@ remote_file '/tmp/ssm/amazon-ssm-agent.deb' do
   source 'https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb'
   owner 'root'
   group 'root'
-  mode '0755'
+  mode '0754'
   action :create
 end
 
