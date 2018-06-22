@@ -70,9 +70,8 @@ remote_file '/tmp/ssm/amazon-ssm-agent.deb' do
   action :create
 end
 
-dpkg_package 'system_manager' do
+dpkg_package 'amazon-ssm-agent.deb' do
   source '/tmp/ssm'
-  package_name 'amazon-ssm-agent.deb'
   action :install
 end
 
