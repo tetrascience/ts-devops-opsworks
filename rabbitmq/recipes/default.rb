@@ -34,20 +34,20 @@ package 'rabbitmq-server' do
   action :install
 end
 
-execute 'enalbe_rabiitmq_management_plugin' do
-  command 'rabbitmq-plugins enable rabbitmq_management'
-  action :run
-end
-
-template '/etc/rabbitmq/rabbitmq.conf' do
-  source 'rabbitmq.conf.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-  notifies :restart, 'service[rabbitmq-server]', :delayed
-end
-
-service 'rabbitmq-server' do
-  supports status: true
-  action [:enable, :start]
-end
+# execute 'enalbe_rabiitmq_management_plugin' do
+#   command 'rabbitmq-plugins enable rabbitmq_management'
+#   action :run
+# end
+#
+# template '/etc/rabbitmq/rabbitmq.conf' do
+#   source 'rabbitmq.conf.erb'
+#   owner 'root'
+#   group 'root'
+#   mode '0644'
+#   notifies :restart, 'service[rabbitmq-server]', :delayed
+# end
+#
+# service 'rabbitmq-server' do
+#   supports status: true
+#   action [:enable, :start]
+# end
