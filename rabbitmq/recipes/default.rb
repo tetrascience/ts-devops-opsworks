@@ -19,7 +19,7 @@ end
 
 package ['erlang-base','erlang-inets', 'erlang-crypto', 'erlang-inets', 'erlang-runtime-tools', 'erlang-snmp', 'erlang-ssh', 'erlang-tools', 'erlang-xmerl', 'erlang-syntax-tools', 'erlang-ic', 'erlang-mnesia', 'erlang-ssl', 'erlang-public-key', 'erlang-asn1'] do
   action :install
-  version ['1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1',, '1:20.3-1']
+  version ['1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1']
   timeout 900
 end
 
