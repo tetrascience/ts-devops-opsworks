@@ -17,7 +17,13 @@ apt_repository 'erlang' do
   action :add
 end
 
-package ['erlang', 'erlang-dev', 'erlang-appmon', 'erlang-common-test', 'erlang-debugger', 'erlang-dialyzer', 'erlang-et', 'erlang-gs', 'erlang-megaco', 'erlang-observer', 'erlang-pman', 'erlang-reltool', 'erlang-test-server', 'erlang-toolbar', 'erlang-tv', 'erlang-typer', 'erlang-wx', 'erlang-ic-java', 'erlang-src'] do
+package ['erlang-base','erlang-inets', 'erlang-crypto', 'erlang-inets', 'erlang-runtime-tools', 'erlang-snmp', 'erlang-ssh', 'erlang-tools', 'erlang-xmerl', 'erlang-syntax-tools', 'erlang-ic', 'erlang-mnesia'] do
+  action :install
+  version '1:20.3-1'
+  timeout 900
+end
+
+package ['erlang','erlang-dev', 'erlang-appmon', 'erlang-common-test', 'erlang-debugger', 'erlang-dialyzer', 'erlang-et', 'erlang-gs', 'erlang-megaco', 'erlang-observer', 'erlang-pman', 'erlang-reltool', 'erlang-test-server', 'erlang-toolbar', 'erlang-tv', 'erlang-typer', 'erlang-wx', 'erlang-ic-java', 'erlang-src'] do
   action :install
   version '1:20.3-1'
   timeout 900
