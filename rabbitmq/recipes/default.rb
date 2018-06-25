@@ -64,3 +64,57 @@ service 'rabbitmq-server' do
   supports status: true
   action [:enable, :start]
 end
+
+directory '/mnt/lib' do
+  owner 'rabbitmq'
+  group 'rabbitmq'
+  mode '0755'
+  action :create
+end
+
+directory '/mnt/log' do
+  owner 'rabbitmq'
+  group 'rabbitmq'
+  mode '0755'
+  action :create
+end
+
+execute 'copy_lib_files' do
+  command 'mv /var/lib/rabbitmq /mnt/lib'
+  action :run
+end
+
+execute 'copy_log_files' do
+  command 'mv /var/log/rabbitmq /mnt/log'
+  action :run
+end
+
+execute 'link_folders' do
+  command 'ln -s /mnt/lib/rabbitmq /var/lib/rabbitmq'
+  action :run
+end
+
+execute 'link_log_folders' do
+  command 'ln -s /mnt/log/rabbitmq /var/log/rabbitmq'
+  action :run
+end
+
+directory '/tmp/ssm' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+remote_file '/tmp/ssm/amazon-ssm-agent.deb' do
+  source 'https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb'
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+dpkg_package 'amazon-ssm-agent.deb' do
+  source '/tmp/ssm/amazon-ssm-agent.deb'
+  action :install
+end
