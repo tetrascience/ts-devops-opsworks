@@ -23,6 +23,12 @@ package ['erlang-base','erlang-inets', 'erlang-crypto', 'erlang-inets', 'erlang-
   timeout 900
 end
 
+package ['erlang-corba', 'erlang-diameter', 'erlang-edoc', 'erlang-eldap', 'erlang-erl-docgen', 'erlang-eunit', 'erlang-inviso', 'erlang-odbc', 'erlang-os-mon', 'erlang-parsetools', 'erlang-percept'] do
+  action :install
+  version ['1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1']
+  timeout 900
+end
+
 package ['erlang','erlang-dev', 'erlang-appmon', 'erlang-common-test', 'erlang-debugger', 'erlang-dialyzer', 'erlang-et', 'erlang-gs', 'erlang-megaco', 'erlang-observer', 'erlang-pman', 'erlang-reltool', 'erlang-test-server', 'erlang-toolbar', 'erlang-tv', 'erlang-typer', 'erlang-wx', 'erlang-ic-java', 'erlang-src'] do
   action :install
   version ['1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1', '1:20.3-1']
