@@ -19,7 +19,7 @@ end
 
 package 'erlang' do
   action :install
-  version '20.3.6'
+  version '1:20.3-1'
   timeout 900
 end
 
