@@ -10,38 +10,6 @@ include_recipe 'chef-sugar'
 package_extension = 'deb' if node['platform_family'] == 'debian'
 package_extension = 'rpm' if node['platform_family'] == 'rhel'
 
-directory '/mnt/lib/logstash' do
-  owner 'logstash'
-  group 'logstash'
-  recursive true
-  mode '0755'
-  action :create
-end
-
-directory '/mnt/log/logstash' do
-  owner 'logstash'
-  group 'logstash'
-  recursive true
-  mode '0755'
-  action :create
-end
-
-directory '/mnt/lib/elasticsearch' do
-  owner 'elasticsearch'
-  group 'elasticsearch'
-  recursive true
-  mode '0755'
-  action :create
-end
-
-directory '/mnt/log/elasticsearch' do
-  owner 'elasticsearch'
-  group 'elasticsearch'
-  recursive true
-  mode '0755'
-  action :create
-end
-
 %w(* root elasticsearch kibana).each do |user|
   set_limit user do
     type 'hard'
@@ -89,6 +57,38 @@ package 'apt-transport-https'
     action :install
   end
 end if node['platform_family'] == 'debian'
+
+directory '/mnt/lib/logstash' do
+  owner 'logstash'
+  group 'logstash'
+  recursive true
+  mode '0755'
+  action :create
+end
+
+directory '/mnt/log/logstash' do
+  owner 'logstash'
+  group 'logstash'
+  recursive true
+  mode '0755'
+  action :create
+end
+
+directory '/mnt/lib/elasticsearch' do
+  owner 'elasticsearch'
+  group 'elasticsearch'
+  recursive true
+  mode '0755'
+  action :create
+end
+
+directory '/mnt/log/elasticsearch' do
+  owner 'elasticsearch'
+  group 'elasticsearch'
+  recursive true
+  mode '0755'
+  action :create
+end
 
 execute 'chpwn_elasticseach_mount' do
   command 'chown -R elasticsearch:elasticsearch /mnt/lib/elasticsearch'
