@@ -66,10 +66,10 @@ directory '/mnt/log/elasticsearch' do
   action :create
 end
 
-#execute 'plugin_elasticseach_s3' do
-#  command '/usr/share/elasticsearch/bin/elasticsearch-plugin install --batch repository-s3'
-#  action :run
-#end
+execute 'plugin_elasticseach_s3' do
+  command '/usr/share/elasticsearch/bin/elasticsearch-plugin install --batch repository-s3'
+  action :run
+end
 
 directory '/tmp/ssm' do
   owner 'root'
