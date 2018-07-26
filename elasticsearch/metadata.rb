@@ -21,13 +21,3 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 
 depends 'java', '~> 1.50.0'
 depends 'apt', '= 5.1.0'
-depends 'homebrew', '= 3.0.0'
-depends 'windows', '= 2.1.1'
-depends 'compat_resource', '~> 12.19.0'
-depends 'ohai', '= 4.2.3'
-depends 'git', '= 5.0.2'
-depends 'mingw', '= 1.2.5'
-depends 'build-essential', '= 7.0.3'
-depends 'dmg', '= 3.1.1'
-depends 'yum-epel', '~> 2.1.1'
-depends 'limits', '~> 1.0.0'
