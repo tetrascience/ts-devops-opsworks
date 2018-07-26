@@ -27,8 +27,6 @@
   },
   "dependencies": {
     "apt": ">= 0.0.0",
-    "windows": ">= 0.0.0",
-    "homebrew": ">= 0.0.0"
   },
   "recommendations": {
 
