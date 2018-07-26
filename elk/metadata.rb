@@ -21,4 +21,4 @@ chef_version '>= 12.14' if respond_to?(:chef_version)
 
 depends 'java', '~> 1.50.0'
 depends 'apt', '= 5.1.0'
-depends 'chef-sugar', '= 3.6.0'
+depends 'limits', '~> 1.0.0'
