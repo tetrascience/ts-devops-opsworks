@@ -101,7 +101,7 @@ end
 
 if datadogkey != "" then
   execute 'install_datadog' do
-    command "DD_API_KEY=#{datadogkey} datadogkey bash -c '$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)'"
+    command "DD_API_KEY=#{datadogkey} bash -c '$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)'"
     action :run
   end
   execute 'tag_instance' do
