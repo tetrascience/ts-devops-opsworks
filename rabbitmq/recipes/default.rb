@@ -7,6 +7,9 @@
 #include_recipe 'java'
 include_recipe 'apt'
 
+datadogkey = node['rabbitmq']['datadogkey']
+instance = node['rabbitmq']['instance']
+
 package [ 'apt-transport-https', 'init-system-helpers', 'socat', 'logrotate',  'adduser' ]
 
 apt_repository 'erlang' do
@@ -117,4 +120,15 @@ end
 dpkg_package 'amazon-ssm-agent.deb' do
   source '/tmp/ssm/amazon-ssm-agent.deb'
   action :install
+end
+
+if datadogkey != "" then
+  execute 'install_datadog' do
+    command "DD_API_KEY=#{datadogkey} datadogkey bash -c '$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)'"
+    action :run
+  end
+  execute 'tag_instance' do
+    command "echo tags:#{instance} >> /etc/datadog-agent/datadog.yaml"
+    action :run
+  end
 end

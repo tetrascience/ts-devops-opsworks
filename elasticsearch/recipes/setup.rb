@@ -7,6 +7,9 @@
 include_recipe 'java'
 include_recipe 'apt'
 
+datadogkey = node['elasticsearch']['datadogkey']
+instance = node['elasticsearch']['instance']
+
 %w(* root elasticsearch).each do |user|
   set_limit user do
     type 'hard'
@@ -101,5 +104,16 @@ if node['elasticsearch']['version'] == "2.x" then
     command '/usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf/v2.1.1'
     action :run
     creates "/usr/share/elasticsearch/plugins/kopf"
+  end
+end
+
+if datadogkey != "" then
+  execute 'install_datadog' do
+    command "DD_API_KEY=#{datadogkey} datadogkey bash -c '$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)'"
+    action :run
+  end
+  execute 'tag_instance' do
+    command "echo tags:#{instance} >> /etc/datadog-agent/datadog.yaml"
+    action :run
   end
 end

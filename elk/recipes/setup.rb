@@ -10,6 +10,9 @@ include_recipe 'chef-sugar'
 package_extension = 'deb' if node['platform_family'] == 'debian'
 package_extension = 'rpm' if node['platform_family'] == 'rhel'
 
+datadogkey = node['elkapp']['datadogkey']
+instance = node['elkapp']['instance']
+
 %w(* root elasticsearch kibana).each do |user|
   set_limit user do
     type 'hard'
@@ -94,4 +97,15 @@ execute 'chpwn_elasticseach_mount' do
   command 'chown -R elasticsearch:elasticsearch /mnt/lib/elasticsearch'
   action :run
   only_if { ::Dir.exist?("/mnt/lib/elasticsearch") }
+end
+
+if datadogkey != "" then
+  execute 'install_datadog' do
+    command "DD_API_KEY=#{datadogkey} datadogkey bash -c '$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)'"
+    action :run
+  end
+  execute 'tag_instance' do
+    command "echo tags:#{instance} >> /etc/datadog-agent/datadog.yaml"
+    action :run
+  end
 end
