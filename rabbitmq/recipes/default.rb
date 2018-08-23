@@ -68,40 +68,6 @@ service 'rabbitmq-server' do
   action [:enable, :start]
 end
 
-directory '/mnt/lib' do
-  owner 'rabbitmq'
-  group 'rabbitmq'
-  mode '0755'
-  action :create
-end
-
-directory '/mnt/log' do
-  owner 'rabbitmq'
-  group 'rabbitmq'
-  mode '0755'
-  action :create
-end
-
-execute 'copy_lib_files' do
-  command 'mv /var/lib/rabbitmq /mnt/lib'
-  action :run
-end
-
-execute 'copy_log_files' do
-  command 'mv /var/log/rabbitmq /mnt/log'
-  action :run
-end
-
-execute 'link_folders' do
-  command 'ln -s /mnt/lib/rabbitmq /var/lib/rabbitmq'
-  action :run
-end
-
-execute 'link_log_folders' do
-  command 'ln -s /mnt/log/rabbitmq /var/log/rabbitmq'
-  action :run
-end
-
 directory '/tmp/ssm' do
   owner 'root'
   group 'root'
