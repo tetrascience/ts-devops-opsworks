@@ -39,34 +39,10 @@ package 'elasticsearch' do
   action :install
 end
 
-directory '/mnt/lib/elasticsearch' do
-  owner 'elasticsearch'
-  group 'elasticsearch'
-  recursive true
-  mode '0755'
-  action :create
-end
-
-execute 'chown_elasticseach_mount' do
-  command 'chown -R elasticsearch:elasticsearch /mnt/lib/elasticsearch'
+execute 'chpwn_elasticseach_mount' do
+  command 'chown -R elasticsearch:elasticsearch /var/lib/elasticsearch'
   action :run
-  only_if { ::Dir.exist?("/mnt/lib/elasticsearch") }
-end
-
-directory '/mnt/repos/elastichsearch' do
-  owner 'elasticsearch'
-  group 'elasticsearch'
-  recursive true
-  mode '0755'
-  action :create
-end
-
-directory '/mnt/log/elasticsearch' do
-  owner 'elasticsearch'
-  group 'elasticsearch'
-  recursive true
-  mode '0755'
-  action :create
+  only_if { ::Dir.exist?("/var/lib/elasticsearch") }
 end
 
 execute 'plugin_elasticseach_s3' do
