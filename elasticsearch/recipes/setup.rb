@@ -64,6 +64,14 @@ dpkg_package 'amazon-ssm-agent.deb' do
   action :install
 end
 
+directory '/var/repos/elastichsearch' do
+  owner 'elasticsearch'
+  group 'elasticsearch'
+  recursive true
+  mode '0755'
+  action :create
+end
+
 execute 'chpwn_elasticseach_mount' do
   command 'chown -R elasticsearch:elasticsearch /var/lib/elasticsearch'
   action :run
