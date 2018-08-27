@@ -39,12 +39,6 @@ package 'elasticsearch' do
   action :install
 end
 
-execute 'chpwn_elasticseach_mount' do
-  command 'chown -R elasticsearch:elasticsearch /var/lib/elasticsearch'
-  action :run
-  only_if { ::Dir.exist?("/var/lib/elasticsearch") }
-end
-
 execute 'plugin_elasticseach_s3' do
   command '/usr/share/elasticsearch/bin/elasticsearch-plugin install --batch repository-s3'
   action :run
@@ -68,6 +62,12 @@ end
 dpkg_package 'amazon-ssm-agent.deb' do
   source '/tmp/ssm/amazon-ssm-agent.deb'
   action :install
+end
+
+execute 'chpwn_elasticseach_mount' do
+  command 'chown -R elasticsearch:elasticsearch /var/lib/elasticsearch'
+  action :run
+  only_if { ::Dir.exist?("/var/lib/elasticsearch") }
 end
 
 if node['elasticsearch']['version'] == "2.x" then
