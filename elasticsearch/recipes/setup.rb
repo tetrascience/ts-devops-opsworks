@@ -39,6 +39,14 @@ package 'elasticsearch' do
   action :install
 end
 
+directory '/var/repos/elasticsearch' do
+  owner 'elasticsearch'
+  group 'elasticsearch'
+  recursive true
+  mode '0755'
+  action :create
+end
+
 execute 'plugin_elasticseach_s3' do
   command '/usr/share/elasticsearch/bin/elasticsearch-plugin install --batch repository-s3'
   action :run
@@ -62,14 +70,6 @@ end
 dpkg_package 'amazon-ssm-agent.deb' do
   source '/tmp/ssm/amazon-ssm-agent.deb'
   action :install
-end
-
-directory '/var/repos/elastichsearch' do
-  owner 'elasticsearch'
-  group 'elasticsearch'
-  recursive true
-  mode '0755'
-  action :create
 end
 
 execute 'chpwn_elasticseach_mount' do
