@@ -75,19 +75,6 @@ directory '/tmp/ssm' do
   action :create
 end
 
-remote_file '/tmp/ssm/amazon-ssm-agent.deb' do
-  source 'https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb'
-  owner 'root'
-  group 'root'
-  mode '0755'
-  action :create
-end
-
-dpkg_package 'amazon-ssm-agent.deb' do
-  source '/tmp/ssm/amazon-ssm-agent.deb'
-  action :install
-end
-
 if datadogkey != "" then
   execute 'install_datadog' do
     command "DD_API_KEY=#{datadogkey} bash -c \"$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)\""
